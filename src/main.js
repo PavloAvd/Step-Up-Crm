@@ -2,7 +2,7 @@ import { createApp } from 'vue'
 import store from './store'
 import App from './App.vue'
 import router from './router'
-import '/dist/output.css'
+import './input.css'
 
 //
 // import { initializeApp } from "firebase/app";

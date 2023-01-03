@@ -20,25 +20,20 @@ export default {
         }
     },
     actions: {
-        async loadCarousel({commit}) {
-            const imagesRef = await listAll(carouselRef)
-            // console.log(imagesRef)
-            // console.log(imagesRef.items)
-            // console.log(imagesRef.prefixes)
+      async loadCarousel({commit}) {
+        const imagesRef = await listAll(carouselRef)
+        const images = Object.values(imagesRef.items)
 
-            const images = Object.values(imagesRef.items)
-
-            let imgUrls =[]
-                images.map((async item => {
-                let imgRef = ref(storage, `${item.fullPath}`)
-                imgUrls.push(await getDownloadURL(imgRef))
-
-            }))
-            console.log(imgUrls)
-            commit('setCarouselImages', imgUrls)
-
-
-        }
+        let imgUrls = images.map((async item => {
+          let imgRef = ref(storage, `${item.fullPath}`)
+          return await getDownloadURL(imgRef)
+        }))
+        
+        Promise.all(imgUrls)
+        .then(res => {
+          commit('setCarouselImages', res)
+        })
+      }
     },
     getters: {
         load(state) {

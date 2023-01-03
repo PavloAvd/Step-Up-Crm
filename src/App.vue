@@ -1,5 +1,5 @@
 <template>
-  <component :is=" layout + '-layout' " v-if="layout"  />
+  <component :is=" layout + '-layout' " v-if="layout"  class="bg-greyGradient h-screen"/>
 </template>
 
 <script>
