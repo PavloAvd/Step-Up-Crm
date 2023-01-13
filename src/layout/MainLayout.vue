@@ -1,32 +1,27 @@
 <template>
-  <div class="relative  grid grid-cols-8  " >
-      <the-navbar class="col-span-8" />
-      <the-sidebar v-if="studentBar"  class="col-span-1"/>
-      <div :class="{'col-span-7': studentBar, 'col-span-full':!studentBar }">
-          <router-view />
+    <div class="grid gap-4">
+      <div>
+        <the-navbar class="" />
       </div>
-  </div>
+      <div class="mt-20 lg:mt-20">
+        <the-sidebar />
+      </div>
+      <div>
+        <router-view />
+      </div>
+
+    </div>
+
 </template>
 
-<script>
+<script setup>
 import TheNavbar from "@/components/TheNavbar";
 import TheSidebar from "@/components/TheSidebar";
 import { computed } from "vue";
 import {useStore } from 'vuex'
 
-
-
-export default {
-  setup() {
-    const store = useStore()
-    const studentBar = computed(() => store.state.studentBar)
-    return {
-      studentBar,
-
-    }
-  },
-  components: { TheSidebar, TheNavbar }
-}
+const store = useStore()
+const studentBar = computed(() => store.state.studentBar)
 
 </script>
 

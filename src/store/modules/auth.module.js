@@ -41,9 +41,7 @@ export default {
               let adminMail = []
               const queryAdmins = await getDocs(collection(db, "isAdmin"))
               queryAdmins.forEach((doc) => {
-                   // console.log(adminMails.id, " => ", adminMails.data());
-                   adminMail = doc.data()
-                   // console.log(Object.values(adminMail))
+                  adminMail = doc.data()
               })
               if ( Object.values(adminMail).includes(email) ) {
                    await signInWithEmailAndPassword (auth, email, password)
@@ -57,17 +55,14 @@ export default {
                    commit('setRole', 'student')
                    commit('openStudentBar')
                   dispatch('userState')
-
               }
            } catch (e) {
                dispatch('message/setMessage', {
                    value : error(e.code),
                    type : 'danger'
                },{root: true})
-
         }
         },
-
         async signUp({ commit, dispatch }, {email, password, fullName, bDate, phone, zone, dCode}) {
             try {
                 await createUserWithEmailAndPassword (auth, email, password)
@@ -84,9 +79,7 @@ export default {
             } catch (e) {
                 console.log(e)
             }
-
         },
-
         async userState ({commit, dispatch}) {
             onAuthStateChanged(auth, (user) => {
                 if (user) {

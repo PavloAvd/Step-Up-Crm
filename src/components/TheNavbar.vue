@@ -1,42 +1,26 @@
 <template>
-   <div class=" flex justify-between  m-2  text-white border-b-2 items-center h-20">
-
+   <div class=" grid grid-cols-1 md:grid-cols-3 text-white items-center h-20">
      <img class="object-contain w-24 h-24 ml-10" src="logo.png" >
-
-     <ul class="flex gap-8 mr-8 ">
-       <li>
-         <router-link to="/" class="hover:border-b-2 hover:border-white"> Головна </router-link>
-       </li>
-       <li>
-         <router-link to="/gallery" class="hover:border-b-2 hover:border-white"> Галерея </router-link>
-       </li>
-       <li>
-         <router-link to="/shop" class="hover:border-b-2 hover:border-white"> Онлайн Шоп </router-link>
-       </li>
-       <li>
-         <router-link to="/contacts" class="hover:border-b-2 hover:border-white"> Контакти </router-link>
-       </li>
-     </ul>
-      <div>
-        <button @click="store.commit('closeStudentBar')">Закрити</button>
-        <router-link to="/auth" class="mr-10 hover:border-b-2 hover:border-white"> Авторизація </router-link>
+      <div class="flex justify-between">
+        <app-button title="Головна" @click="router.push('/')"></app-button>
+        <app-button title="Галерея" @click="router.push('/gallery')"></app-button>
+        <app-button title="Мерч" @click="router.push('/shop')"></app-button>
+        <app-button title="Контакти" @click="router.push('/contacts')"></app-button>
       </div>
-
-
+      <div class="justify-self-end">
+        <app-button title="Авторизація" @click="router.push('/auth')"></app-button>
+      </div>
    </div>
 </template>
 
-<script>
+<script setup>
+import AppButton from "@/components/ui/button/AppButton";
 import {useStore} from "vuex";
-export default {
-  setup() {
-    const store = useStore()
+import { useRouter} from "vue-router";
 
-    return {
-      store
-    }
-  }
-}
+const store = useStore()
+const router = useRouter()
+
 </script>
 
 <style scoped>

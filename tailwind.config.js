@@ -4,7 +4,9 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage:{
-          'greyGradient': 'linear-gradient(180deg, #141E30 10%, #28416F 100%)'
+          'greyGradient': 'linear-gradient(to bottom, #38385a, #575671, #777588, #9896a0, #b9b9b9)'
+
+
       },
       colors:{
 

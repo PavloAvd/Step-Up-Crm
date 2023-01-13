@@ -1,8 +1,9 @@
 <template>
-  <div>
+  <div >
     <h1 class="text-center text-white text-4xl">Головна сторінка </h1>
     <h2 class="text-center text-white text-4xl">Новини та фото з івентів чи тренувань </h2>
-    <carousel />
+
+     <carousel class="hidden lg:block"/>
   </div>
 </template>
 

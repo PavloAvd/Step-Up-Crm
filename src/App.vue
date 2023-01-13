@@ -1,5 +1,7 @@
 <template>
-  <component :is=" layout + '-layout' " v-if="layout"  class="bg-greyGradient h-screen"/>
+  <div class="min-h-screen h-full bg-greyGradient">
+    <component :is=" layout + '-layout' " v-if="layout"  class=" max-w-screen"/>
+  </div>
 </template>
 
 <script>
