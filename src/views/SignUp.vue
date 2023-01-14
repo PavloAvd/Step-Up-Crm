@@ -1,8 +1,10 @@
 <template>
+  <div class="grid mb-10" >
+    <div class="flex justify-center m-8 ">
+      <img src="logo.png" class="w-56">
+    </div>
 
-<div class="container mx-auto  border-4 border-amber-50 " >
-  <router-link to="/" class="text-white hover:text-cyan-200 border-b-2 border-b-blue-200"> На головну </router-link>
-    <form @submit.prevent="onSignUp" class=" p-8 border-4  w-1/3 mx-auto mt-20">
+    <form @submit.prevent="onSignUp" class="mx-14 sm:mx-auto mt-8">
       <h1 class="text-white border-white text-center border-b-2 mb-4">Зареєструватися</h1>
       <div class="grid gap-2">
         <label for="email" class="text-white" >Email</label>
@@ -43,22 +45,28 @@
         <input class="pl-2 rounded-[10px] h-10" type="password" id="d-code" v-model="dCode">
         <small v-if="dCodeError" class="text-red-500">{{dCodeError}}</small>
       </div>
-      <button type="submit"  class="text-white mt-4 p-2 border-2 rounded-2xl w-auto" :disabled="isSubmitting || isTooManyAttempts" > Зареєструватись </button>
-  </form>
+      <div class="flex gap-4 justify-between">
+        <app-button type="submit" class="w-36 mt-8" title="Підтвердити" :disabled="isSubmitting || isTooManyAttempts"></app-button>
+        <app-button class=" mt-8" title="На головну" @click="router.push('/')"></app-button>
+      </div>
+    </form>
 </div>
 </template>
 
 <script>
 import {useLoginForm} from "@/use/login-form";
 import {useSignUpForm} from "@/use/sign-up-form";
-
+import AppButton from "@/components/ui/button/AppButton";
+import {useRouter} from "vue-router";
 export default {
  setup(){
-
+   const router = useRouter()
    return {
-     ...useSignUpForm()
+     ...useSignUpForm(),
+     router
    }
- }
+ },
+  components: {AppButton}
 
 }
 </script>

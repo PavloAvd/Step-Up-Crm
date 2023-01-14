@@ -1,6 +1,6 @@
 <template>
-  <div class="min-h-screen h-full bg-greyGradient">
-    <component :is=" layout + '-layout' " v-if="layout"  class=" max-w-screen"/>
+  <div class="min-h-screen flex flex-col grow bg-greyGradient">
+    <component :is=" layout + '-layout' " v-if="layout"  class=""/>
   </div>
 </template>
 
