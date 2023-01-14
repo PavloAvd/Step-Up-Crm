@@ -1,17 +1,16 @@
 <template>
-  <div class="container mx-auto h-screen border-4 border-amber-50 ">
+  <div class="grid">
+    <div class="flex justify-center m-8 ">
+      <img src="logo.png" class="w-56">
+    </div>
 
-    <router-link to="/" class="text-white hover:text-cyan-200"> На головну </router-link>
-    <router-link to="/sign-up" class="text-white hover:text-cyan-200"> Зреєструватись </router-link>
-
-    <form @submit.prevent="onSubmit" class="p-8 border-4  w-1/3 mx-auto mt-20">
-
+    <form @submit.prevent="onSubmit" class=" mx-auto mt-8">
       <h1 class="text-white border-white text-center border-b-2 mb-4">Авторизація</h1>
-
       <div class="grid gap-2">
         <label for="email" class="text-white">Введіть email</label>
         <input
-           :class="['rounded-[10px] h-10', {'border-2 border-red-500' : eError}]"
+            class="shadow-xl shadow-black"
+           :class="['rounded-[10px] p-2 h-10', {'border-2 border-red-500' : eError}]"
             type="email" id="email"
             v-model="email"
             @blur="eBlur"
@@ -21,7 +20,8 @@
       <div class="grid gap-2 mt-8">
         <label for="password" class="text-white">Введіть пароль</label>
         <input
-            :class="['rounded-[10px] h-10', {'border-2 border-red-500' : pError}]"
+            class="shadow-xl shadow-black"
+            :class="['rounded-[10px] h-10 p-2 ', {'border-2 border-red-500' : pError}]"
             type="password"
             id="password"
             v-model="password"
@@ -29,27 +29,36 @@
         >
         <small v-if="pError" class="text-red-500">{{pError}}</small>
       </div>
-
-      <button type="submit"  class="text-white mt-4 p-2 border-2 rounded-2xl w-20" :disabled="isSubmitting || isTooManyAttempts"> Увіти </button>
-
+      <div class="flex gap-4 justify-between">
+        <app-button type="submit" class="w-36 mt-8" title="Увійти" :disabled="isSubmitting || isTooManyAttempts"></app-button>
+        <app-button class="w-36 mt-8" title="Зареєструватись" @click="router.push('/sign-up')"></app-button>
+      </div>
+      <div class="flex justify-center mt-8">
+        <app-button class="w-36 h-10" title="На головну" @click="router.push('/')"></app-button>
+      </div>
     </form>
   </div>
 
 </template>
 
-<script>
+<script >
 import {useLoginForm} from '@/use/login-form'
+import AppButton from "@/components/ui/button/AppButton";
+
+import {useRouter} from "vue-router";
 
 
 
 
 export default {
   setup() {
-
+  const router = useRouter()
     return {
-      ...useLoginForm()
+      ...useLoginForm(),
+      router
     }
-  }
+  },
+  components: {AppButton}
 }
 </script>
 
